@@ -16,6 +16,9 @@ var_unprivileged="${var_unprivileged:-1}"
 
 header_info "$APP"
 variables
+
+# APP includes a display suffix, so set the actual companion installer filename explicitly.
+var_install="postgresql-install"
 color
 catch_errors
 
