@@ -28,6 +28,17 @@ export CARGO_HOME=/root/.cargo
 export RUSTUP_HOME=/root/.rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 . "${CARGO_HOME}/env"
+
+# rustup's --no-modify-path option keeps installation deterministic, so expose
+# the root toolchain explicitly for login shells and non-login commands.
+cat <<'EOF' >/etc/profile.d/rust.sh
+export CARGO_HOME=/root/.cargo
+export RUSTUP_HOME=/root/.rustup
+export PATH="/root/.cargo/bin:$PATH"
+EOF
+chmod 0644 /etc/profile.d/rust.sh
+ln -sf "${CARGO_HOME}/bin/cargo" /usr/local/bin/cargo
+ln -sf "${CARGO_HOME}/bin/rustc" /usr/local/bin/rustc
 msg_ok "Installed Rust and Cargo"
 
 msg_info "Configuring UFW"
