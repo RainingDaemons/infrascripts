@@ -21,7 +21,7 @@ catch_errors
 
 # Point build_container at this repository's companion installer. Override
 # INSTALL_BASE_URL when hosting these scripts from a different Git remote.
-INSTALL_BASE_URL="${INSTALL_BASE_URL:-https://raw.githubusercontent.com/ra1n/infrascripts/main/backend/rust}"
+INSTALL_BASE_URL="${INSTALL_BASE_URL:-https://raw.githubusercontent.com/RainingDaemons/infrascripts/main/backend/rust}"
 eval "$(declare -f build_container | sed "s#https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/install#${INSTALL_BASE_URL}#g")"
 
 start

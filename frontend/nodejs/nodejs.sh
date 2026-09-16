@@ -5,8 +5,8 @@ source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxV
 # License: MIT
 # Source: https://github.com/RainingDaemons/infrascripts
 
-APP="SvelteKit LXC"
-var_tags="${var_tags:-development;sveltekit}"
+APP="NodeJS LXC"
+var_tags="${var_tags:-development;nodejs}"
 var_cpu="${var_cpu:-2}"
 var_ram="${var_ram:-2048}"
 var_disk="${var_disk:-10}"

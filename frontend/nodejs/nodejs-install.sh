@@ -18,7 +18,9 @@ $STD apt-get install -y ca-certificates curl git python3 python3-pip ufw
 msg_ok "Installed system dependencies"
 
 msg_info "Installing Node.js and pnpm"
-$STD curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+$STD curl --retry 3 --retry-delay 2 --retry-connrefused -fsSL -o /tmp/nodesource_setup.sh https://deb.nodesource.com/setup_22.x
+$STD bash /tmp/nodesource_setup.sh
+$STD rm -f /tmp/nodesource_setup.sh
 $STD apt-get install -y nodejs
 $STD npm install -g pnpm
 msg_ok "Installed Node.js and pnpm"

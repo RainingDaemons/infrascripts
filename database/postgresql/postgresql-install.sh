@@ -17,6 +17,13 @@ msg_info "Installing system dependencies"
 $STD apt-get install -y ca-certificates curl git gnupg python3 python3-pip ufw
 msg_ok "Installed system dependencies"
 
+msg_info "Installing Node.js"
+$STD curl --retry 3 --retry-delay 2 --retry-connrefused -fsSL -o /tmp/nodesource_setup.sh https://deb.nodesource.com/setup_22.x
+$STD bash /tmp/nodesource_setup.sh
+$STD rm -f /tmp/nodesource_setup.sh
+$STD apt-get install -y nodejs
+msg_ok "Installed Node.js"
+
 msg_info "Installing PostgreSQL 16"
 $STD install -d -m 0755 /usr/share/postgresql-common/pgdg
 $STD curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.gpg
@@ -25,11 +32,6 @@ echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.gpg] h
 $STD apt-get update
 $STD apt-get install -y postgresql-16
 msg_ok "Installed PostgreSQL 16"
-
-msg_info "Installing Node.js"
-$STD curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
-$STD apt-get install -y nodejs
-msg_ok "Installed Node.js"
 
 msg_info "Configuring UFW"
 $STD ufw allow 5432/tcp
